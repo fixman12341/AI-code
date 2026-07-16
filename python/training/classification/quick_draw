@@ -1,0 +1,90 @@
+import numpy as np
+from PIL import Image
+import pygame
+from matplotlib import pyplot as plt
+
+
+pygame.init()
+w = pygame.display.set_mode([800,800])
+#var in the script that I would be using
+grid = []
+saved_places = []
+pixel_size = 5
+
+
+ink_rect = pygame.Rect(0,0,pixel_size,pixel_size)
+color = (0,0,0)
+running = True
+c = pygame.time.Clock()
+def img_save(img_array, file_name, title= '', show = True, cmap=None):
+
+
+    if show:
+        plt.imshow(img_array.astype(np.uint8), cmap = cmap)
+        plt.title(title)
+        #plt.show()
+
+
+    plt.imsave(file_name, img_array.astype(np.uint8), cmap = cmap)
+#img = Image.open("1.webp")
+#img = np.array(img).astype(np.uint8)
+#img_save(img, '2.png', 'Q2', show = True)
+
+
+for x in range(800):
+    col = []
+    for y in range(800):
+        col.append((255,255,255))
+    grid.append(col)
+
+
+#grid = np.array(grid).astype(np.uint8)
+#img_save(grid,"2.png",'Q2',show = True)
+#inK class
+def place_ink(mx,my):
+    global grid,saved_places
+    mx = mx//pixel_size*pixel_size
+    my = my//pixel_size*pixel_size
+    if mx >=0 and mx+5<=800 and my >=0 and my <= 800:
+        for i in range(pixel_size):
+            for y in range(pixel_size):
+                grid[mx+i][my+y] = color
+
+
+    saved_places.append((mx,my))
+
+
+def draw_ink():
+    w.fill((255,255,255))
+    global ink_rect
+    for i in range(len(saved_places)):
+        ink_rect.x, ink_rect.y = saved_places[i]
+        x,y = saved_places[i]
+        c = grid[x][y]
+        pygame.draw.rect(w,c,ink_rect)
+def un_rotate(grid):
+    new_grid = []
+    for y in range(len(grid)):
+        column = []
+        for x in range(len(grid)):
+            column.append(grid[x][y])
+        new_grid.append(column)
+    return new_grid
+           
+while running:
+    for e in pygame.event.get():
+        if e.type == pygame.QUIT:
+            running = False
+    if pygame.mouse.get_pressed() == (1,0,0):
+        m_x,m_y = pygame.mouse.get_pos()
+        place_ink(m_x,m_y)
+    draw_ink()
+    pygame.display.flip()
+    c.tick(120)
+pygame.quit()
+grid = un_rotate(grid)
+grid = np.array(grid).astype(np.uint(8))
+img_save(grid,"2.png",'Q2',show = True)
+
+
+

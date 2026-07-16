@@ -1,0 +1,13 @@
+*.pyc
+*.pth.tar
+cat_dog*
+plants*
+logs/
+data/cat_dog
+data/human_tooth
+data/doodle/test
+data/doodle/train
+data/doodle/val
+data_making/**/*.jpg
+data_making/**/*.png
+*.ndjson

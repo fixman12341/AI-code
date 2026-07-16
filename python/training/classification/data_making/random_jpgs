@@ -1,0 +1,39 @@
+
+import numpy as np
+from PIL import Image
+from matplotlib import pyplot as plt
+import math
+# show and save a ndarray as an image
+def img_save(img_array, file_name, title= '', show = True, cmap=None):
+
+    if show:
+        plt.imshow(img_array.astype(np.uint16), cmap = cmap)
+        plt.title(title)
+        #plt.show()
+
+    plt.imsave(out+"/" + file_name, img_array.astype(np.uint8), cmap = cmap)
+#def take_img(file_name):
+images = []
+
+take = input("Where do you want to take from: ")
+out = input("Where do you want it: ")
+for i in range(8):
+    img = Image.open(take +'/'+str(i+1)+'.jpg').convert("RGB")
+    img = np.array(img).astype(np.uint16)
+
+    images.append(img)
+count = 0
+#img_seattle.shape = [img_seattle.shape[1],img_seattle.shape[0]]
+def change_sat(times,img):
+    global count
+    for i in range(times):
+        new = img
+        #new -= 100
+        new += 5*times
+        np.clip(new,0,255, out=new)
+        img_save(new, 'Tooth_'+str(count)+'.png', 'Q1', show = True)
+        count += 1
+
+
+for i in range(len(images)):
+    new_img = change_sat(5,images[i])

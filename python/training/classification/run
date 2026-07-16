@@ -1,0 +1,6 @@
+#!/bin/env bash
+
+NET=models/human_tooth
+DATASET=data/human_tooth
+
+imagenet.py --model=$NET/resnet18.onnx --input_blob=input_0 --output_blob=output_0 --labels=$DATASET/labels.txt $DATASET/test/"$1"/"$2".jpg doodle.jpg

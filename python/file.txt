@@ -1,0 +1,187 @@
+
+imageNet -- loading classification network model from:
+         -- prototxt     (null)
+         -- model        models/doodle/resnet18.onnx
+         -- class_labels data/doodle/labels.txt
+         -- input_blob   'input_0'
+         -- output_blob  'output_0'
+         -- batch_size   1
+
+[TRT]    TensorRT version 8.6.2
+[TRT]    loading NVIDIA plugins...
+[TRT]    Registered plugin creator - ::BatchedNMSDynamic_TRT version 1
+[TRT]    Registered plugin creator - ::BatchedNMS_TRT version 1
+[TRT]    Registered plugin creator - ::BatchTilePlugin_TRT version 1
+[TRT]    Registered plugin creator - ::Clip_TRT version 1
+[TRT]    Registered plugin creator - ::CoordConvAC version 1
+[TRT]    Registered plugin creator - ::CropAndResizeDynamic version 1
+[TRT]    Registered plugin creator - ::CropAndResize version 1
+[TRT]    Registered plugin creator - ::DecodeBbox3DPlugin version 1
+[TRT]    Registered plugin creator - ::DetectionLayer_TRT version 1
+[TRT]    Registered plugin creator - ::EfficientNMS_Explicit_TF_TRT version 1
+[TRT]    Registered plugin creator - ::EfficientNMS_Implicit_TF_TRT version 1
+[TRT]    Registered plugin creator - ::EfficientNMS_ONNX_TRT version 1
+[TRT]    Registered plugin creator - ::EfficientNMS_TRT version 1
+[0;31m[TRT]    Could not register plugin creator -  ::FlattenConcat_TRT version 1
+[0m[TRT]    Registered plugin creator - ::GenerateDetection_TRT version 1
+[TRT]    Registered plugin creator - ::GridAnchor_TRT version 1
+[TRT]    Registered plugin creator - ::GridAnchorRect_TRT version 1
+[TRT]    Registered plugin creator - ::InstanceNormalization_TRT version 1
+[TRT]    Registered plugin creator - ::InstanceNormalization_TRT version 2
+[TRT]    Registered plugin creator - ::LReLU_TRT version 1
+[TRT]    Registered plugin creator - ::ModulatedDeformConv2d version 1
+[TRT]    Registered plugin creator - ::MultilevelCropAndResize_TRT version 1
+[TRT]    Registered plugin creator - ::MultilevelProposeROI_TRT version 1
+[TRT]    Registered plugin creator - ::MultiscaleDeformableAttnPlugin_TRT version 1
+[TRT]    Registered plugin creator - ::NMSDynamic_TRT version 1
+[TRT]    Registered plugin creator - ::NMS_TRT version 1
+[TRT]    Registered plugin creator - ::Normalize_TRT version 1
+[TRT]    Registered plugin creator - ::PillarScatterPlugin version 1
+[TRT]    Registered plugin creator - ::PriorBox_TRT version 1
+[TRT]    Registered plugin creator - ::ProposalDynamic version 1
+[TRT]    Registered plugin creator - ::ProposalLayer_TRT version 1
+[TRT]    Registered plugin creator - ::Proposal version 1
+[TRT]    Registered plugin creator - ::PyramidROIAlign_TRT version 1
+[TRT]    Registered plugin creator - ::Region_TRT version 1
+[TRT]    Registered plugin creator - ::Reorg_TRT version 1
+[TRT]    Registered plugin creator - ::ResizeNearest_TRT version 1
+[TRT]    Registered plugin creator - ::ROIAlign_TRT version 1
+[TRT]    Registered plugin creator - ::RPROI_TRT version 1
+[TRT]    Registered plugin creator - ::ScatterND version 1
+[TRT]    Registered plugin creator - ::SpecialSlice_TRT version 1
+[TRT]    Registered plugin creator - ::Split version 1
+[TRT]    Registered plugin creator - ::VoxelGeneratorPlugin version 1
+[TRT]    completed loading NVIDIA plugins.
+[TRT]    detected model format - ONNX  (extension '.onnx')
+[TRT]    desired precision specified for GPU: FASTEST
+[0;33m[TRT]    requested fasted precision for device GPU without providing valid calibrator, disabling INT8
+[0m[TRT]    [MemUsageChange] Init CUDA: CPU +12, GPU +0, now: CPU 39, GPU 4579 (MiB)
+[TRT]    Trying to load shared library libnvinfer_builder_resource.so.8.6.2
+[TRT]    Loaded shared library libnvinfer_builder_resource.so.8.6.2
+[TRT]    [MemUsageChange] Init builder kernel library: CPU +1154, GPU +1064, now: CPU 1229, GPU 5681 (MiB)
+[TRT]    CUDA lazy loading is enabled.
+[TRT]    native precisions detected for GPU:  FP32, FP16, INT8
+[TRT]    selecting fastest native precision for GPU:  FP16
+[TRT]    found engine cache file models/doodle/resnet18.onnx.1.1.8602.GPU.FP16.engine
+[TRT]    found model checksum models/doodle/resnet18.onnx.sha256sum
+[TRT]    echo "$(cat models/doodle/resnet18.onnx.sha256sum) models/doodle/resnet18.onnx" | sha256sum --check --status
+[TRT]    model matched checksum models/doodle/resnet18.onnx.sha256sum
+[TRT]    loading network plan from engine cache... models/doodle/resnet18.onnx.1.1.8602.GPU.FP16.engine
+[0;32m[TRT]    device GPU, loaded models/doodle/resnet18.onnx
+[0m[TRT]    Loaded engine size: 22 MiB
+[0;33m[TRT]    Using an engine plan file across different models of devices is not recommended and is likely to affect performance or even cause errors.
+[0m[TRT]    Deserialization required 19497 microseconds.
+[TRT]    [MemUsageChange] TensorRT-managed allocation in engine deserialization: CPU +0, GPU +21, now: CPU 0, GPU 21 (MiB)
+[TRT]    Total per-runner device persistent memory is 0
+[TRT]    Total per-runner host persistent memory is 123312
+[TRT]    Allocated activation device memory of size 2408448
+[TRT]    [MemUsageChange] TensorRT-managed allocation in IExecutionContext creation: CPU +0, GPU +2, now: CPU 0, GPU 23 (MiB)
+[TRT]    CUDA lazy loading is enabled.
+[0;33m[TRT]    The getMaxBatchSize() function should not be used with an engine built from a network created with NetworkDefinitionCreationFlag::kEXPLICIT_BATCH flag. This function will always return 1.
+[0m[TRT]    
+[TRT]    CUDA engine context initialized on device GPU:
+[TRT]       -- layers       28
+[TRT]       -- maxBatchSize 1
+[TRT]       -- deviceMemory 2408448
+[TRT]       -- bindings     2
+[TRT]       binding 0
+                -- index   0
+                -- name    'input_0'
+                -- type    FP32
+                -- in/out  INPUT
+                -- # dims  4
+                -- dim #0  1
+                -- dim #1  3
+                -- dim #2  224
+                -- dim #3  224
+[TRT]       binding 1
+                -- index   1
+                -- name    'output_0'
+                -- type    FP32
+                -- in/out  OUTPUT
+                -- # dims  2
+                -- dim #0  1
+                -- dim #1  50
+[TRT]    
+[TRT]    binding to input 0 input_0  binding index:  0
+[TRT]    binding to input 0 input_0  dims (b=1 c=3 h=224 w=224) size=602112
+[TRT]    binding to output 0 output_0  binding index:  1
+[TRT]    binding to output 0 output_0  dims (b=1 c=50 h=1 w=1) size=200
+[TRT]    
+[0;32m[TRT]    device GPU, models/doodle/resnet18.onnx initialized.
+[0m[TRT]    loaded 50 class labels
+[0;32m[TRT]    imageNet -- models/doodle/resnet18.onnx initialized.
+[0m[0;32m[video]  created imageLoader from file:///home/adam/jetson-inference/python/training/classification/data/doodle/game/doodle.jpg
+[0m------------------------------------------------
+imageLoader video options:
+------------------------------------------------
+  -- URI: file:///home/adam/jetson-inference/python/training/classification/data/doodle/game/doodle.jpg
+     - protocol:  file
+     - location:  data/doodle/game/doodle.jpg
+     - extension: jpg
+  -- deviceType: file
+  -- ioType:     input
+  -- codec:      unknown
+  -- codecType:  v4l2
+  -- frameRate:  0
+  -- numBuffers: 4
+  -- zeroCopy:   true
+  -- flipMethod: none
+  -- loop:       0
+------------------------------------------------
+[0;32m[video]  created imageWriter from file:///home/adam/jetson-inference/python/training/classification/output.jpg
+[0m------------------------------------------------
+imageWriter video options:
+------------------------------------------------
+  -- URI: file:///home/adam/jetson-inference/python/training/classification/output.jpg
+     - protocol:  file
+     - location:  output.jpg
+     - extension: jpg
+  -- deviceType: file
+  -- ioType:     output
+  -- codec:      unknown
+  -- codecType:  v4l2
+  -- frameRate:  0
+  -- bitRate:    0
+  -- numBuffers: 4
+  -- zeroCopy:   true
+------------------------------------------------
+[OpenGL] glDisplay -- X screen 0 resolution:  2048x1209
+[OpenGL] glDisplay -- X window resolution:    2048x1209
+[OpenGL] glDisplay -- display device initialized (2048x1209)
+[0;32m[video]  created glDisplay from display://0
+[0m------------------------------------------------
+glDisplay video options:
+------------------------------------------------
+  -- URI: display://0
+     - protocol:  display
+     - location:  0
+  -- deviceType: display
+  -- ioType:     output
+  -- width:      2048
+  -- height:     1209
+  -- frameRate:  0
+  -- numBuffers: 4
+  -- zeroCopy:   true
+------------------------------------------------
+[image]  loaded 'data/doodle/game/doodle.jpg'  (800x800, 3 channels)
+[OpenGL] glDisplay -- set the window size to 800x800
+[OpenGL] creating 800x800 texture (GL_RGB8 format, 1920000 bytes)
+[0;31m[cuda]   cudaGraphicsGLRegisterBuffer(&interop, allocDMA(type), cudaGraphicsRegisterFlagsFromGL(flags))
+[0m[0;31m[cuda]      unknown error (error 999) (hex 0x3E7)
+[0m[0;31m[cuda]      /home/adam/jetson-inference/utils/display/glTexture.cpp:360
+[0m[image]  saved 'output.jpg'  (800x800, 3 channels)
+
+[TRT]    ------------------------------------------------
+[TRT]    Timing Report models/doodle/resnet18.onnx
+[TRT]    ------------------------------------------------
+[TRT]    Pre-Process   CPU   0.75074ms  CUDA   0.19846ms
+[TRT]    Network       CPU   7.82604ms  CUDA   7.41184ms
+[TRT]    Post-Process  CPU   0.05190ms  CUDA   0.05299ms
+[TRT]    Total         CPU   8.62868ms  CUDA   7.66330ms
+[TRT]    ------------------------------------------------
+
+[0;33m[TRT]    note -- when processing a single image, run 'sudo jetson_clocks' before
+                to disable DVFS for more accurate profiling/timing measurements
+
+[0mimagenet:  60.74% class #25 (beach)

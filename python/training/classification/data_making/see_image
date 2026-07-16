@@ -1,0 +1,43 @@
+import matplotlib.pyplot as plt
+import json
+import numpy as np
+import os
+from itertools import islice
+
+BASE_DIR = "/home/adam/jetson-inference/python/training/classification/data/doodle"
+
+doodles = {
+        "full_simplified_baseball.ndjson": "baseball/",
+    "full_simplified_basket.ndjson": "basket/",
+}
+
+# Create every class folder under both test/ and val/ up front
+for class_folder in doodles.values():
+    os.makedirs(os.path.join(BASE_DIR, "test", class_folder), exist_ok=True)
+    os.makedirs(os.path.join(BASE_DIR, "val", class_folder), exist_ok=True)
+
+start = 10000
+times = 11500
+
+for dood in doodles:
+    print(dood)
+
+    with open(dood, "r") as file:
+        for i, line in enumerate(islice(file, start, times), start=start):
+            data = json.loads(line)
+
+            fig, ax = plt.subplots()
+            for stroke in data["drawing"]:
+                x, y = stroke
+                ax.plot(x, y, linewidth=3, color="black")
+
+            ax.invert_yaxis()
+            ax.set_aspect("equal")
+            ax.axis("off")
+
+            if i % 1000 == 0:
+                print(i)
+
+            fig.savefig(os.path.join(BASE_DIR, "test", doodles[dood], f"{i - 10000}.jpg"))
+            fig.savefig(os.path.join(BASE_DIR, "val", doodles[dood], f"{i - 10000}.jpg"))
+            plt.close(fig)
