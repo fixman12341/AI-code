@@ -9,6 +9,7 @@ import subprocess
 import pygame.freetype
 import json
 import random
+import os
 
 # Initialize Pygame and open an 800x800 drawing window.
 pygame.init()
@@ -275,7 +276,7 @@ while playing:
              "--output_blob=output_0",
              f"{dataset}/game/{name}.jpg",
              "output.jpg"],
-            cwd="/home/adam/jetson-inference/python/training/classification",
+            cwd=os.path.dirname(os.path.realpath(__file__))+"/training/classification",
             capture_output=True,
             text=True
         )
