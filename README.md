@@ -7,3 +7,4 @@ The game itself uses a two point line system to make it look smoother.
 The controls are space to move on and hold down to start drawing
 When the time hits 0 or you press space it moves and then it sends to the ai code and predicts it
 If the random image and what the ai thinks you drew you're score goes up and time gets halfed, if not it resets and time gets set back to a minute.
+Example Video: https://drive.google.com/file/d/1sXwYp1-zittiRdqqHYWIT4f9aFrB7gSB/view?usp=sharing
